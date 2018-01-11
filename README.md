@@ -1,7 +1,7 @@
 WeSTATS
 ==============
 통계를 눈으로 직접 확인 가능합니다.
-![CFR_App](./img/WeSTATS_small_logo.png)
+![CFR_App](./img/README_logo.png)
 
 목적
 ==============
