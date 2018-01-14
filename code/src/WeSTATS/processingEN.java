@@ -120,7 +120,8 @@ public class processingEN {
 		Iterator it = sortByValue(map).iterator();
 		while(it.hasNext()) {
 			String key = (String) it.next();
-			System.out.println("key = " + key + ", count = " + map.get(key));
+			System.out.print(key + "=");
+			System.out.println(map.get(key));
 		}
 	}
 	// printMap에 종속. value기준 정렬시키는 역할 
