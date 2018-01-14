@@ -32,6 +32,14 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 public class processingEN {
+	// 통합 함수 
+	public static void weStats(String[] adress) throws Exception{
+		String resulutTXT = inputPDF(adress);
+		Map map = packWord(resulutTXT);
+		printMap(map);
+	}
+	
+	// pdf 복수개를 문자열로 변환 
 	public static String inputPDF(String[] adress) throws Exception{
 		String resultTXT = "";
 		for(int i=0; i<adress.length; i++) {
@@ -39,7 +47,7 @@ public class processingEN {
 		}
 		return resultTXT;
 	}
-	
+	// pdf 1개를 문자열로 변환 
 	public static String PDFtoString(String adr) throws Exception{
 		PDDocument doc = PDDocument.load(new File(adr));
 		PDFTextStripper textStripper = new PDFTextStripper();
@@ -112,8 +120,7 @@ public class processingEN {
 		Iterator it = sortByValue(map).iterator();
 		while(it.hasNext()) {
 			String key = (String) it.next();
-			System.out.print(key + "=");
-			System.out.println(map.get(key));
+			System.out.println("key = " + key + ", count = " + map.get(key));
 		}
 	}
 	// printMap에 종속. value기준 정렬시키는 역할 
