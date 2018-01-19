@@ -5,8 +5,14 @@ together. Keyword Pitch Statistics.
 
 Why
 ==============
-Nowadays, the percentage of last exams is very high in any exam. For example, TOEIC only evaluates business English, frequent spoken words are frequently used. There are many spoken wordbooks already on the market. But I think it would be good to check it yourself.
+Nowadays, the percentage of last exams is very high in any exam. For example, TOEIC only evaluates business English, frequent spoken words are frequently used. There are many english wordbooks already on the market. But I think it would be better to check it yourself.
 
+Before use
+==============
+You need to prepare the PDFBox-1.8.13.jar and the json-simple-1.1.1.jar. <br>
+They can be downloaded here. <br>
+[PDFBox-1.8.13.jar](https://pdfbox.apache.org/download.cgi) <br>
+[json-simple-1.1.1.jar](https://code.google.com/archive/p/json-simple/downloads)
 
 How to use
 ==============
@@ -15,4 +21,4 @@ Multiple PDF files can be input.
 
 License
 ==============
-We used Apache's PDFBox. So you get an Apache 2.0 license.
+We used Apache's PDFBox. So you are subject to the **Apache 2.0 license**.
