@@ -16,8 +16,13 @@ They can be downloaded here. <br>
 
 How to use
 ==============
-![CFR_App](./img/manual.png)
-Multiple PDF files can be input.
+
+        void Stats(String[] PDFadress)
+        JSONObject StatIntoJSON(String[] PDFadress)
+
+* Multiple PDF files can be input.
+* You can print directly from the console.
+* It can be returned in json format.
 
 License
 ==============
