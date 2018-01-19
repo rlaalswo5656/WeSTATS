@@ -28,9 +28,7 @@ public class main {
 		processingEN en = new processingEN();
 		
 		
-		String resultTXT = en.inputPDF(adress); // pdf에서 문자열 추출  
-		Map map = en.packWord(resultTXT);  // 영단어를 해쉬맵에 저장 
-		en.printMap(map); // 해쉬맵 출력 
+		en.Stats(adress);
 		
 	}
 }

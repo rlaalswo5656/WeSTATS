@@ -30,13 +30,22 @@ import java.util.ArrayList;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class processingEN {
 	// 통합 함수 
-	public static void weStats(String[] adress) throws Exception{
-		String resulutTXT = inputPDF(adress);
-		Map map = packWord(resulutTXT);
+	public static void Stats(String[] adress) throws Exception{
+		String resultTXT = inputPDF(adress);
+		Map map = packWord(resultTXT);
+		map = removeUnneed(map);
 		printMap(map);
+	}
+	public static JSONObject StatsIntoJSON(String[] adress) throws Exception{
+		String resultTXT = inputPDF(adress);
+		Map map = packWord(resultTXT);
+		map = removeUnneed(map);
+		return AsJson(map);
 	}
 	
 	// pdf 복수개를 문자열로 변환 
@@ -115,7 +124,7 @@ public class processingEN {
 		}
 		return map;
 	}
-	// 해쉬맵을 정렬시켜 출력 
+	// 해쉬맵을 정렬시켜 콘솔로 출력 
 	public static void printMap(Map map) {
 		Iterator it = sortByValue(map).iterator();
 		while(it.hasNext()) {
@@ -124,7 +133,17 @@ public class processingEN {
 			System.out.println(map.get(key));
 		}
 	}
-	// printMap에 종속. value기준 정렬시키는 역할 
+	// 해쉬맵을 정렬시켜 json으로 출력 
+	public static JSONObject AsJson(Map map) {
+		Iterator it = sortByValue(map).iterator();
+		JSONObject jsonobject = new JSONObject();
+		while(it.hasNext()) {
+			String key = (String) it.next();
+			jsonobject.put(key, map.get(key));
+		}
+		return jsonobject;
+	}
+	// value기준 정렬시키는 역할 
 	public static List sortByValue(final Map map) {
 		List<String> list = new ArrayList();
 		list.addAll(map.keySet());
@@ -139,4 +158,13 @@ public class processingEN {
 		});
 		return list;
 	}
+	// 전치사 인칭대명사 등등 제거 
+	public static Map removeUnneed(Map map) {
+		String[] unneed = {"the","to","of","and","in","is","that","for","it","you","as","are","on","with","be","was","they","or","from","their","not","have","this","at","an","we","but","your","more","by","can","he","will","his","what","our","its","so","were","had","my","if","has","there","her","would","them","she","into","no","may","us","me","been","those","him","these","dont"};
+		for(int i=0; i<unneed.length; i++) {
+			map.remove(unneed[i]);
+		}
+		return map;
+	}
+	
 }
