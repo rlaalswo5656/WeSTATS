@@ -17,12 +17,37 @@ They can be downloaded here. <br>
 How to use
 ==============
 
-        void Stats(String[] PDFadress)
-        JSONObject StatIntoJSON(String[] PDFadress)
+    void Stats(String[] PDFadress)
+    //or
+    JSONObject StatIntoJSON(String[] PDFadress)
+
 
 * Multiple PDF files can be input.
 * You can print directly from the console.
 * It can be returned in json format.
+
+Example
+==============
+Ex
+
+    import WeSTATS.*;
+    
+    public static void  main(String[] args) throws Exception{
+        String adress[] = {"pc1/Users/Documents/English.pdf"};
+        processingEN en = new processingEN();
+        
+        en.Stats(adress);
+    }
+Ex
+
+    import WeSTATS.*;
+    
+    public static void  main(String[] args) throws Exception{
+        String adress[] = {"pc1/Users/Documents/English.pdf"};
+        processingEN en = new processingEN();
+        
+        JSONObject obj = en.StatsIntoJSON(adress);
+    }
 
 License
 ==============
