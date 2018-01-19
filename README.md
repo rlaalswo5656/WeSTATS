@@ -1,18 +1,18 @@
 WeSTATS
 ==============
-함께하는. 키워드 빈출 통계.
+together. Keyword Pitch Statistics.
 ![CFR_App](./img/logo.png)
 
-목적
+Why
 ==============
-요즘엔 어느 시험이던 기출반영 비율이 매우 높다. 흔히 접하는 토익만 해도 비즈니스 영어를 평가하기 때문에 자주 쓰이는 기출단어가 자주 출제된다. 이미 시중에 많은 기출단어집이 있지만 직접 눈으로 확인하면 좋을 것 같아 만들게 되었다.
+Nowadays, the rate of reflection is very high in any exam. For example, TOEIC only evaluates business English, frequent spoken words are frequently used. There are many spoken wordbooks already on the market. But I think it would be good to check it yourself.
 
 
-사용법
+How to use
 ==============
 ![CFR_App](./img/manual.png)
-아직은 바로 결과로 출력이 되므로 반환형식은 없다. weStats가 함수명이며 오직 사용자 컴퓨터의 디렉토리명을 String으로 받는다. 필요시 String배열로 복수의 PDF를 동시에 입력가능하다. 
+Multiple PDF files can be input.
 
-적용 라이센스
+License
 ==============
-아파치의 PDFBox를 사용하였으므로 아파치2.0 라이센스를 적용받는다.
+We used Apache's PDFBox. So you get an Apache 2.0 license.
