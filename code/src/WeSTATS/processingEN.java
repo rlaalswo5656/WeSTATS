@@ -168,7 +168,10 @@ public class processingEN {
 	}
 	// Eliminate unnecessary
 	public static Map removeUnneed(Map map) {
-		String[] unneed = {"the","to","of","and","in","is","that","for","it","you","as","are","on","with","be","was","they","or","from","their","not","have","this","at","an","we","but","your","more","by","can","he","will","his","our","its","so","were","had","my","if","has","there","her","them","she","into","no","may","us","me","been","those","him","these","dont"};
+		String[] unneed = {"the","to","of","and","in","is","that","for","it","you","as","are","on","with","be","was",
+							"they","or","from","their","not","have","this","at","an","we","but","your","more","by","can",
+							"he","will","his","our","its","so","were","had","my","if","has","there","her","them","she",
+							"into","no","may","us","me","been","those","him","these","dont"};
 		for(int i=0; i<unneed.length; i++) {
 			map.remove(unneed[i]);
 		}
