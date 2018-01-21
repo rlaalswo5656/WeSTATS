@@ -14,21 +14,29 @@ They can be downloaded here. <br>
 [PDFBox-1.8.13.jar](https://pdfbox.apache.org/download.cgi) <br>
 [json-simple-1.1.1.jar](https://code.google.com/archive/p/json-simple/downloads)
 
-How to use
+Features
 ==============
-
-    void Stats(String[] PDFadress)
-    //or
-    JSONObject StatIntoJSON(String[] PDFadress)
-
-
 * Multiple PDF files can be input.
 * You can print directly from the console.
 * It can be returned in json format.
+* You can limit the number of outputs.
+* Exclude unnecessary prepositions and pronouns.
+
+How to use
+==============
+    
+    //If you want to use only basic functions
+    void Stats(String[] PDFadress)
+    
+    //If you want to limit the number of outputs
+    void Stats(String[] PDFadress, int amount)
+    
+    //If you want to return in JSON format
+    JSONObject StatIntoJSON(String[] PDFadress)
 
 Example
 ==============
-Ex
+Basic Ex
 
     import WeSTATS.*;
     
@@ -38,7 +46,17 @@ Ex
         
         en.Stats(adress);
     }
-Ex
+Limit output Ex
+    
+    import WeSTATS.*;
+    
+    public static void  main(String[] args) throws Exception{
+        String adress[] = {"pc1/Users/Documents/English.pdf"};
+        processingEN en = new processingEN();
+        
+        en.Stats(adress, 100);
+    }
+Return JSON Ex
 
     import WeSTATS.*;
     
@@ -48,6 +66,10 @@ Ex
         
         JSONObject obj = en.StatsIntoJSON(adress);
     }
+    
+Example Result
+==============
+![CFR_App](./img/result.png)
 
 License
 ==============
