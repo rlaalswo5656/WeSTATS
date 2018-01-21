@@ -24,7 +24,7 @@ Features
 
 How to use
 ==============
-    
+    ```java
     //If you want to use only basic functions
     void Stats(String[] PDFadress)
     
@@ -33,11 +33,13 @@ How to use
     
     //If you want to return in JSON format
     JSONObject StatIntoJSON(String[] PDFadress)
+    ```
 
 Example
 ==============
 Basic Ex
 
+    ```java
     import WeSTATS.*;
     
     public static void  main(String[] args) throws Exception{
@@ -46,8 +48,11 @@ Basic Ex
         
         en.Stats(adress);
     }
+    ```
+    
 Limit output Ex
     
+    ```java
     import WeSTATS.*;
     
     public static void  main(String[] args) throws Exception{
@@ -56,8 +61,11 @@ Limit output Ex
         
         en.Stats(adress, 100);
     }
+    ```
+    
 Return JSON Ex
 
+    ```java
     import WeSTATS.*;
     
     public static void  main(String[] args) throws Exception{
@@ -66,6 +74,7 @@ Return JSON Ex
         
         JSONObject obj = en.StatsIntoJSON(adress);
     }
+    ```
     
 Example Result
 ==============
