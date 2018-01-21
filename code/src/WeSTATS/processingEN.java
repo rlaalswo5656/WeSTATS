@@ -34,20 +34,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class processingEN {
-	// 통합 함수 
+	// Integration method
 	public static void Stats(String[] adress) throws Exception{
 		String resultTXT = inputPDF(adress);
 		Map map = packWord(resultTXT);
 		map = removeUnneed(map);
 		printMap(map);
 	}
-	// 통합 함수 + 상위 n개만 출력 
+	// Integration method + Limit the number of outputs
 	public static void Stats(String[] adress, int rank) throws Exception{
 		String resultTXT = inputPDF(adress);
 		Map map = packWord(resultTXT);
 		map = removeUnneed(map);
 		printMapCut(map,rank);
 	}
+	// Integration method returning in JSON format
 	public static JSONObject StatsIntoJSON(String[] adress) throws Exception{
 		String resultTXT = inputPDF(adress);
 		Map map = packWord(resultTXT);
@@ -55,15 +56,15 @@ public class processingEN {
 		return AsJson(map);
 	}
 	
-	// pdf 복수개를 문자열로 변환 
+	// Convert one or more pdf to a string 
 	public static String inputPDF(String[] adress) throws Exception{
 		String resultTXT = "";
 		for(int i=0; i<adress.length; i++) {
-			resultTXT += PDFtoString(adress[i]);
+			resultTXT += PDFtoString(adress[i]); // Convert PDF to String 1 by 1
 		}
 		return resultTXT;
 	}
-	// pdf 1개를 문자열로 변환 
+	//	Convert PDF to String 1 by 1
 	public static String PDFtoString(String adr) throws Exception{
 		PDDocument doc = PDDocument.load(new File(adr));
 		PDFTextStripper textStripper = new PDFTextStripper();
@@ -75,10 +76,10 @@ public class processingEN {
 		return filtEN(textWriter.toString());
 	}
 	
-	// 문자열중 영어를 제외한 나머지를 전부 제거 후 문자열로 반환 
+	// Remove all but English
 	public static String filtEN(String TXT) {
-		int CodeEnter = 10; // 줄바꿈 
-		int CodeSpace = 32; // Spcae
+		int CodeEnter = 10; // Meaning line break
+		int CodeSpace = 32; // Meaning blank
 		int CodeEngUpp[] = { 65, 90 };  // A~Z
 		int CodeEngLow[] = { 97, 122 };   // a~z
 		String replaceTo = "";
@@ -91,11 +92,11 @@ public class processingEN {
 			
 			Check = true;
 			
-			if(iCharCode >= CodeEngUpp[0] && iCharCode <= CodeEngUpp[1]) {      // 대문자를 소문자로 변경 
+			if(iCharCode >= CodeEngUpp[0] && iCharCode <= CodeEngUpp[1]) {      // Change uppercase to lowercase 
 				iCharCode += 32;
 			}
 					
-			// 스페이스와 영어빼고 나머지 제거 
+			// English and spaces only
 			if(iCharCode != CodeEnter) {
 				if(iCharCode != CodeSpace) {
 					if(iCharCode < CodeEngUpp[0] || iCharCode > CodeEngUpp[1]) {
@@ -106,7 +107,7 @@ public class processingEN {
 					}
 				}
 			}else {
-				iCharCode = CodeSpace;  // 줄바꿈을 공백으로 바꿔줌 
+				iCharCode = CodeSpace;  // Replace line breaks with blanks
 			}
 			if(Check) {
 				resultTXT += (char)iCharCode;
@@ -114,24 +115,24 @@ public class processingEN {
 		}
 		return resultTXT;
 	}
-	// 문자열을 영단어 단위로 나눠 해쉬맵으로 반환 
+	// Split string into hash map
 	public static Map packWord(String resultTXT) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
-		Pattern pattern = Pattern.compile("\\s[a-zA-Z]{2,}"); // 2~30자 길이를 갖는 영단어 정규표현
+		Pattern pattern = Pattern.compile("\\s[a-zA-Z]{2,}"); // English words with a length of 2 to 30 characters
 		Matcher matcher = pattern.matcher(resultTXT);
 		while(matcher.find()) {
-			String target = matcher.group().replaceAll(" ", ""); // 찾은문자열에서 공백제거 
-			if(map.containsKey(target)) {  // 찾은 문자열이 해쉬테이블에 이미 있다면 
+			String target = matcher.group().replaceAll(" ", ""); // Remove spaces from found strings
+			if(map.containsKey(target)) {  // If the found string already exists in the hash table
 				int value = map.get(target);
 				map.put(target, ++value);
-			}else {                                 // 찾은 문자열이 해쉬테이블에 없다면 
+			}else {                       // If the string found is not in the hash table
 				map.put(target, 1);
 			}
 		}
 		return map;
 	}
-	// 해쉬맵을 정렬시켜 콘솔로 출력 
+	// Sort the hash map and output it to the console 
 	public static void printMap(Map map) {
 		Iterator it = sortByValue(map).iterator();
 		while(it.hasNext()) {
@@ -140,7 +141,7 @@ public class processingEN {
 			System.out.println(map.get(key));
 		}
 	}
-	// 해쉬맵을 정렬시켜 json으로 출력 
+	// Sort the hash map and output it as JSON
 	public static JSONObject AsJson(Map map) {
 		Iterator it = sortByValue(map).iterator();
 		JSONObject jsonobject = new JSONObject();
@@ -150,7 +151,7 @@ public class processingEN {
 		}
 		return jsonobject;
 	}
-	// value기준 정렬시키는 역할 
+	//	Sort method
 	public static List sortByValue(final Map map) {
 		List<String> list = new ArrayList();
 		list.addAll(map.keySet());
@@ -165,7 +166,7 @@ public class processingEN {
 		});
 		return list;
 	}
-	// 전치사 인칭대명사 등등 제거 
+	// Eliminate unnecessary
 	public static Map removeUnneed(Map map) {
 		String[] unneed = {"the","to","of","and","in","is","that","for","it","you","as","are","on","with","be","was","they","or","from","their","not","have","this","at","an","we","but","your","more","by","can","he","will","his","our","its","so","were","had","my","if","has","there","her","them","she","into","no","may","us","me","been","those","him","these","dont"};
 		for(int i=0; i<unneed.length; i++) {
@@ -173,7 +174,7 @@ public class processingEN {
 		}
 		return map;
 	}
-	// 상위 n개 까지만 콘솔 출력 
+	// Only output to the top n 
 	public static void printMapCut(Map map, int rank) {
 		Iterator it = sortByValue(map).iterator();
 		for(int i=0; i<rank; i++) {
