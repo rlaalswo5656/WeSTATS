@@ -41,6 +41,13 @@ public class processingEN {
 		map = removeUnneed(map);
 		printMap(map);
 	}
+	// 통합 함수 + 상위 n개만 출력 
+	public static void Stats(String[] adress, int rank) throws Exception{
+		String resultTXT = inputPDF(adress);
+		Map map = packWord(resultTXT);
+		map = removeUnneed(map);
+		printMapCut(map,rank);
+	}
 	public static JSONObject StatsIntoJSON(String[] adress) throws Exception{
 		String resultTXT = inputPDF(adress);
 		Map map = packWord(resultTXT);
@@ -160,11 +167,19 @@ public class processingEN {
 	}
 	// 전치사 인칭대명사 등등 제거 
 	public static Map removeUnneed(Map map) {
-		String[] unneed = {"the","to","of","and","in","is","that","for","it","you","as","are","on","with","be","was","they","or","from","their","not","have","this","at","an","we","but","your","more","by","can","he","will","his","what","our","its","so","were","had","my","if","has","there","her","would","them","she","into","no","may","us","me","been","those","him","these","dont"};
+		String[] unneed = {"the","to","of","and","in","is","that","for","it","you","as","are","on","with","be","was","they","or","from","their","not","have","this","at","an","we","but","your","more","by","can","he","will","his","our","its","so","were","had","my","if","has","there","her","them","she","into","no","may","us","me","been","those","him","these","dont"};
 		for(int i=0; i<unneed.length; i++) {
 			map.remove(unneed[i]);
 		}
 		return map;
 	}
-	
+	// 상위 n개 까지만 콘솔 출력 
+	public static void printMapCut(Map map, int rank) {
+		Iterator it = sortByValue(map).iterator();
+		for(int i=0; i<rank; i++) {
+			String key = (String) it.next();
+			System.out.print(key + "=");
+			System.out.println(map.get(key));
+		}
+	}
 }
